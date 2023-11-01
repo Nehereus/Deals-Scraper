@@ -9,7 +9,6 @@ document.addEventListener('DOMContentLoaded', function() {
         .then(response => response.json())
         .then(models => {
             modelsList = models; // Store in a local variable
-            populateDropdown(models);
             fetchAndPlotData(models.slice(0, 5), 7); // Default top 5 and last 7 days
         });
 
@@ -24,15 +23,6 @@ document.addEventListener('DOMContentLoaded', function() {
         fetchAndPlotData(modelsList.slice(0, numModels), selectedValue);
     });
 
-    function populateDropdown(models) {
-        const dropdown = document.getElementById('numModels');
-        models.forEach((modelObj, index) => {
-            const option = document.createElement('option');
-            option.value = modelObj.modelName;
-            option.text = modelObj.modelName;
-            dropdown.add(option);
-        });
-    }
 
     function fetchAndPlotData(selectedModels) {
         let dates;
@@ -41,7 +31,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 const d = new Date();
                 d.setDate(d.getDate() - i);
                 return d.toISOString().split('T')[0]; // 'YYYY-MM-DD'
-            });
+            }).reverse();
 
 
             return Promise.all(dates.map(date =>
