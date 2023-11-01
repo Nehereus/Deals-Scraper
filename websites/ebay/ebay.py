@@ -19,7 +19,8 @@ class Ebay(scrapy.Spider):
         max_price = config["EBAY"]["MaxPrice"]
         url = f"https://www.ebay.com/sch/i.html?"
         url += urllib.parse.urlencode(  # LH_BIN = buy it now, _sop = newly listed
-            {'_nkw': ' '.join(self.keywords), '_sop': '10', 'LH_BIN': '1', '_udlo': min_price, '_udhi': max_price})
+            #crawl completed and sold item only
+            {'_nkw': ' '.join(self.keywords), '_sop': '10', 'LH_BIN': '1', '_udlo': min_price, '_udhi': max_price,'LH_Sold': 1,'LH_Complete': 1})
         self.start_urls = [url]  # set the url to the spider
         super().__init__(**kwargs)
 
@@ -38,6 +39,10 @@ class Ebay(scrapy.Spider):
                 './/div[@class="s-item__title"]/span/text()').extract_first()
             price = ads.xpath(
                 './/span[@class="s-item__price"]/text()').extract_first()
+            date_sold = ads.xpath(
+                './/span[@class="s-item__title--tag"]/text()').extract_first()
+            condition = ads.xpath(
+                './/span[@class="s-item__subtitle"]/text()').extract_first()
             # ebay has "1$ to 2$" options and those are definetly not what we are looking for.
             if price == None:
                 continue
@@ -56,6 +61,8 @@ class Ebay(scrapy.Spider):
             ad = Ad()
             ad["title"] = title
             ad["price"] = price
+            ad["date_sold"]=date_sold
+            ad["condition"]=condition
             ad["link"] = ads.xpath('.//a[@class="s-item__link"]/@href').extract_first()
             print_scraper("EBAY", "An ad fitting the criterias was found")
             allAds.append(ad)
