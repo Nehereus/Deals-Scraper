@@ -1,0 +1,402 @@
+{
+  "rtx-4090": {
+    "MinPrice": 100,
+    "MaxPrice": 5000
+  },
+  "rtx-4080": {
+    "MinPrice": 100,
+    "MaxPrice": 5000
+  },
+  "rx-7900-xtx": {
+    "MinPrice": 100,
+    "MaxPrice": 5000
+  },
+  "rtx-4070-ti": {
+    "MinPrice": 100,
+    "MaxPrice": 5000
+  },
+  "rtx-3090-ti": {
+    "MinPrice": 100,
+    "MaxPrice": 5000
+  },
+  "rx-7900-xt": {
+    "MinPrice": 100,
+    "MaxPrice": 5000
+  },
+  "rtx-3090": {
+    "MinPrice": 100,
+    "MaxPrice": 5000
+  },
+  "rtx-3080-ti": {
+    "MinPrice": 100,
+    "MaxPrice": 5000
+  },
+  "rx-6950-xt": {
+    "MinPrice": 100,
+    "MaxPrice": 5000
+  },
+  "rx-6900-xt": {
+    "MinPrice": 100,
+    "MaxPrice": 5000
+  },
+  "rx-7800-xt": {
+    "MinPrice": 100,
+    "MaxPrice": 5000
+  },
+  "rtx-4070": {
+    "MinPrice": 100,
+    "MaxPrice": 5000
+  },
+  "rtx-3080": {
+    "MinPrice": 100,
+    "MaxPrice": 5000
+  },
+  "quadro-rtx-a6000": {
+    "MinPrice": 100,
+    "MaxPrice": 5000
+  },
+  "rx-7700-xt": {
+    "MinPrice": 100,
+    "MaxPrice": 5000
+  },
+  "rx-6800-xt": {
+    "MinPrice": 100,
+    "MaxPrice": 5000
+  },
+  "titan-rtx": {
+    "MinPrice": 100,
+    "MaxPrice": 5000
+  },
+  "quadro-rtx-6000": {
+    "MinPrice": 100,
+    "MaxPrice": 5000
+  },
+  "quadro-rtx-8000": {
+    "MinPrice": 100,
+    "MaxPrice": 5000
+  },
+  "rtx-3070-ti": {
+    "MinPrice": 100,
+    "MaxPrice": 5000
+  },
+  "rtx-2080-ti": {
+    "MinPrice": 100,
+    "MaxPrice": 5000
+  },
+  "rtx-3070": {
+    "MinPrice": 100,
+    "MaxPrice": 5000
+  },
+  "rtx-4060-ti": {
+    "MinPrice": 100,
+    "MaxPrice": 5000
+  },
+  "rx-6800": {
+    "MinPrice": 100,
+    "MaxPrice": 5000
+  },
+  "titan-v": {
+    "MinPrice": 100,
+    "MaxPrice": 5000
+  },
+  "quadro-rtx-5000": {
+    "MinPrice": 100,
+    "MaxPrice": 5000
+  },
+  "rtx-2080s-super": {
+    "MinPrice": 100,
+    "MaxPrice": 5000
+  },
+  "rx-6750-xt": {
+    "MinPrice": 100,
+    "MaxPrice": 5000
+  },
+  "rtx-3060-ti": {
+    "MinPrice": 100,
+    "MaxPrice": 5000
+  },
+  "titan-xp": {
+    "MinPrice": 100,
+    "MaxPrice": 5000
+  },
+  "rtx-2080": {
+    "MinPrice": 100,
+    "MaxPrice": 5000
+  },
+  "gtx-1080-ti": {
+    "MinPrice": 100,
+    "MaxPrice": 5000
+  },
+  "rtx-4060": {
+    "MinPrice": 100,
+    "MaxPrice": 5000
+  },
+  "rx-6700-xt": {
+    "MinPrice": 100,
+    "MaxPrice": 5000
+  },
+  "titan-x-pascal": {
+    "MinPrice": 100,
+    "MaxPrice": 5000
+  },
+  "quadro-p6000": {
+    "MinPrice": 100,
+    "MaxPrice": 5000
+  },
+  "rtx-2080s-super-mobile": {
+    "MinPrice": 100,
+    "MaxPrice": 5000
+  },
+  "rtx-2070s-super": {
+    "MinPrice": 100,
+    "MaxPrice": 5000
+  },
+  "rx-7600": {
+    "MinPrice": 100,
+    "MaxPrice": 5000
+  },
+  "rtx-2080-mobile": {
+    "MinPrice": 100,
+    "MaxPrice": 5000
+  },
+  "arc-a770": {
+    "MinPrice": 100,
+    "MaxPrice": 5000
+  },
+  "rx-6650-xt": {
+    "MinPrice": 100,
+    "MaxPrice": 5000
+  },
+  "quadro-gp100": {
+    "MinPrice": 100,
+    "MaxPrice": 5000
+  },
+  "rx-6700": {
+    "MinPrice": 100,
+    "MaxPrice": 5000
+  },
+  "rx-6600-xt": {
+    "MinPrice": 100,
+    "MaxPrice": 5000
+  },
+  "rtx-2070": {
+    "MinPrice": 100,
+    "MaxPrice": 5000
+  },
+  "gtx-1080": {
+    "MinPrice": 100,
+    "MaxPrice": 5000
+  },
+  "arc-a750": {
+    "MinPrice": 100,
+    "MaxPrice": 5000
+  },
+  "radeon-vii": {
+    "MinPrice": 100,
+    "MaxPrice": 5000
+  },
+  "rtx-3060": {
+    "MinPrice": 100,
+    "MaxPrice": 5000
+  },
+  "rtx-2060s-super": {
+    "MinPrice": 100,
+    "MaxPrice": 5000
+  },
+  "rx-5700-xt": {
+    "MinPrice": 100,
+    "MaxPrice": 5000
+  },
+  "rx-5700xt-50th-anniversary": {
+    "MinPrice": 100,
+    "MaxPrice": 5000
+  },
+  "quadro-rtx-4000": {
+    "MinPrice": 100,
+    "MaxPrice": 5000
+  },
+  "rtx-2070s-super-mobile": {
+    "MinPrice": 100,
+    "MaxPrice": 5000
+  },
+  "gtx-1080-mobile": {
+    "MinPrice": 100,
+    "MaxPrice": 5000
+  },
+  "rx-vega-64lc-liquid-cooled": {
+    "MinPrice": 100,
+    "MaxPrice": 5000
+  },
+  "gtx-1070-ti": {
+    "MinPrice": 100,
+    "MaxPrice": 5000
+  },
+  "rtx-2080s-super-mobile-max-q": {
+    "MinPrice": 100,
+    "MaxPrice": 5000
+  },
+  "rtx-2080-mobile-max-q": {
+    "MinPrice": 100,
+    "MaxPrice": 5000
+  },
+  "rtx-2060": {
+    "MinPrice": 100,
+    "MaxPrice": 5000
+  },
+  "rx-6800m": {
+    "MinPrice": 100,
+    "MaxPrice": 5000
+  },
+  "quadro-p5000": {
+    "MinPrice": 100,
+    "MaxPrice": 5000
+  },
+  "rtx-2070-mobile": {
+    "MinPrice": 100,
+    "MaxPrice": 5000
+  },
+  "rx-vega-64": {
+    "MinPrice": 100,
+    "MaxPrice": 5000
+  },
+  "vega-frontier-edition": {
+    "MinPrice": 100,
+    "MaxPrice": 5000
+  },
+  "radeon-rx-7600s": {
+    "MinPrice": 100,
+    "MaxPrice": 5000
+  },
+  "rx-6600": {
+    "MinPrice": 100,
+    "MaxPrice": 5000
+  },
+  "rtx-2070s-super-mobile-max-q": {
+    "MinPrice": 100,
+    "MaxPrice": 5000
+  },
+  "rx-5700": {
+    "MinPrice": 100,
+    "MaxPrice": 5000
+  },
+  "rx-5600-xt": {
+    "MinPrice": 100,
+    "MaxPrice": 5000
+  },
+  "gtx-1070": {
+    "MinPrice": 100,
+    "MaxPrice": 5000
+  },
+  "gtx-980-ti": {
+    "MinPrice": 100,
+    "MaxPrice": 5000
+  },
+  "rtx-2070-mobile-max-q": {
+    "MinPrice": 100,
+    "MaxPrice": 5000
+  },
+  "gtx-1080-mobile-max-q": {
+    "MinPrice": 100,
+    "MaxPrice": 5000
+  },
+  "rx-vega-56": {
+    "MinPrice": 100,
+    "MaxPrice": 5000
+  },
+  "rx-6700m": {
+    "MinPrice": 100,
+    "MaxPrice": 5000
+  },
+  "gtx-1660-ti": {
+    "MinPrice": 100,
+    "MaxPrice": 5000
+  },
+  "gtx-titan-x": {
+    "MinPrice": 100,
+    "MaxPrice": 5000
+  },
+  "quadro-m6000-24gb": {
+    "MinPrice": 100,
+    "MaxPrice": 5000
+  },
+  "rtx-3050": {
+    "MinPrice": 100,
+    "MaxPrice": 5000
+  },
+  "rx-6600m": {
+    "MinPrice": 100,
+    "MaxPrice": 5000
+  },
+  "quadro-m6000": {
+    "MinPrice": 100,
+    "MaxPrice": 5000
+  },
+  "gtx-1070-mobile": {
+    "MinPrice": 100,
+    "MaxPrice": 5000
+  },
+  "gtx-1660s-super": {
+    "MinPrice": 100,
+    "MaxPrice": 5000
+  },
+  "rtx-2060-mobile": {
+    "MinPrice": 100,
+    "MaxPrice": 5000
+  },
+  "gtx-1660": {
+    "MinPrice": 100,
+    "MaxPrice": 5000
+  },
+  "quadro-p4000": {
+    "MinPrice": 100,
+    "MaxPrice": 5000
+  },
+  "quadro-p5000-m-mobile": {
+    "MinPrice": 100,
+    "MaxPrice": 5000
+  },
+  "gtx-1660-ti-mobile": {
+    "MinPrice": 100,
+    "MaxPrice": 5000
+  },
+  "gtx-1070-mobile-max-q": {
+    "MinPrice": 100,
+    "MaxPrice": 5000
+  },
+  "gtx-titan-z-sli-disabled": {
+    "MinPrice": 100,
+    "MaxPrice": 5000
+  },
+  "gtx-980": {
+    "MinPrice": 100,
+    "MaxPrice": 5000
+  },
+  "r9-fury-x": {
+    "MinPrice": 100,
+    "MaxPrice": 5000
+  },
+  "gtx-1650s-super": {
+    "MinPrice": 100,
+    "MaxPrice": 5000
+  },
+  "r9-fury": {
+    "MinPrice": 100,
+    "MaxPrice": 5000
+  },
+  "gtx-1660-ti-mobile-max-q": {
+    "MinPrice": 100,
+    "MaxPrice": 5000
+  },
+  "rx-590": {
+    "MinPrice": 100,
+    "MaxPrice": 5000
+  },
+  "gtx-1060-6gb": {
+    "MinPrice": 100,
+    "MaxPrice": 5000
+  },
+  "r9-nano": {
+    "MinPrice": 100,
+    "MaxPrice": 5000
+  }
+}
