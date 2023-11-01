@@ -37,7 +37,8 @@ class Ebay(scrapy.Spider):
         for ads in response.xpath('//li[@class="s-item s-item__pl-on-bottom"]'):
             title = ads.xpath('.//div[@class="s-item__title"]/span/text()').extract_first()
             price = ads.xpath('.//span[@class="s-item__price"]/span/text()').extract_first()
-            date_sold = ads.xpath('.//span/text()').extract_first()
+            r_date_sold = ads.xpath('.//span/text()').extract_first()
+            date_sold=' '.join(r_date_sold.split()[1:])
             condition = ads.xpath('.//span[@class="SECONDARY_INFO"]/text()').extract_first() 
             # ebay has "1$ to 2$" options and those are definetly not what we are looking for.
             if price == None:
