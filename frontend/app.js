@@ -29,7 +29,6 @@ app.post('/average-price', (req, res) => {
   const { modelName, date } = req.body; // e.g., gpu = "RTX3090", date = "2023-10-31"
 
   const query = `SELECT AVG(price) as averagePrice FROM "${modelName}" WHERE date_sold = ?`;
-  console.log(modelName+" for "+date);
   db.get(query, [date], (err, row) => {
     if (err) {
       console.log(err)

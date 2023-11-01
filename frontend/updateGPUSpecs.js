@@ -33,7 +33,6 @@ module.exports = async function parseAndInsert() {
 
             if (modelName.toLowerCase().includes('laptop')) return;
             if(!validBrands.includes(brand)){
-                console.log(brand)
                 return;
             }
             modelName = modelName.replace(/\(|\)/g, '').toLowerCase().replace(/ /g, '-');
