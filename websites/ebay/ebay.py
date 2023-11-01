@@ -35,23 +35,22 @@ class Ebay(scrapy.Spider):
 
         # each flex item box (each ad)
         for ads in response.xpath('//li[@class="s-item s-item__pl-on-bottom"]'):
-            title = ads.xpath(
-                './/div[@class="s-item__title"]/span/text()').extract_first()
-            price = ads.xpath(
-                './/span[@class="s-item__price"]/text()').extract_first()
-            date_sold = ads.xpath(
-                './/span[@class="s-item__title--tag"]/text()').extract_first()
-            condition = ads.xpath(
-                './/span[@class="s-item__subtitle"]/text()').extract_first()
+            title = ads.xpath('.//div[@class="s-item__title"]/span/text()').extract_first()
+            price = ads.xpath('.//span[@class="s-item__price"]/span/text()').extract_first()
+            date_sold = ads.xpath('.//span/text()').extract_first()
+            condition = ads.xpath('.//span[@class="SECONDARY_INFO"]/text()').extract_first() 
             # ebay has "1$ to 2$" options and those are definetly not what we are looking for.
             if price == None:
+                print("fuck price")
                 continue
 
             # ebay has ads who are usually unrelated to our specific search.
             if title == None or title == "Shop on eBay":
+                print("fuck title")
                 continue
             # check for any exclusion is in the title, ignore if so
             if any(exclusions.lower() in title.lower() for exclusions in self.exclusions):
+                print("fuck exclusion")
                 continue
 
             # check if title has a keyword, in future this can be an option in the config (strictmode)
