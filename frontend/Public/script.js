@@ -46,7 +46,8 @@ document.addEventListener('DOMContentLoaded', function() {
             const datasets = selectedModels.map((model, index) => ({
                 label: model.modelName,
                 data: prices[index].map(obj => obj.averagePrice),
-                borderColor: getLineColor(model.benchmark) // Assuming the API returns a field called 'averagePrice'
+                borderColor: getLineColor(model.benchmark), // Assuming the API returns a field called 'averagePrice'
+                tension: 0.3
             }));
 
             if (priceHistoryChart) {

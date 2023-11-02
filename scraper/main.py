@@ -10,7 +10,7 @@ from websites.ebay.ebay import Ebay
 
 def main(config):
     print_info("Activating Scraper...")
-    interval = 12
+    interval = 24
 
     while True:
         for keyword, keyword_config in config.items():
@@ -19,6 +19,8 @@ def main(config):
             p.start()
             p.join()
             time.sleep(5)
+        if os.getenv('FETCH_ALL',False):
+            os.environ['FETCH_ALL']="False"
         time.sleep(60 * 60 * interval)
 
 
