@@ -25,30 +25,48 @@ document.addEventListener('DOMContentLoaded', function() {
 
 
     function fetchAndPlotData(selectedModels) {
-        let dates;
-        const dataFetchPromises = selectedModels.map(model => {
-            dates = Array.from({ length: dateRange.value }, (_, i) => {
-                const d = new Date();
-                d.setDate(d.getDate() - i);
-                return d.toISOString().split('T')[0]; // 'YYYY-MM-DD'
-            }).reverse();
+        const endDate = new Date();
+        const startDate = new Date();
+        startDate.setDate(endDate.getDate() - dateRange.value);
 
+        const formattedStartDate = startDate.toISOString().split('T')[0]; // 'YYYY-MM-DD'
+        const formattedEndDate = endDate.toISOString().split('T')[0]; // 'YYYY-MM-DD'
 
-            return Promise.all(dates.map(date =>
-                fetch(`./average-price`, {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({ modelName: model.modelName, date: date })
-                }).then(response => response.json())
-            ));
-        });
-        Promise.all(dataFetchPromises).then(prices => {
-            const datasets = selectedModels.map((model, index) => ({
-                label: model.modelName,
-                data: prices[index].map(obj => obj.averagePrice),
-                borderColor: getLineColor(model.benchmark), // Assuming the API returns a field called 'averagePrice'
-                tension: 0.3
-            }));
+        const dataFetchPromises = selectedModels.map(model =>
+            fetch(`./average-price`, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ modelName: model.modelName, startDate: formattedStartDate, endDate: formattedEndDate })
+            })
+                .then(response => response.json())
+                .then(data => {
+                    // Process data to fill missing dates with the last available price
+                    const filledData = {};
+                    let lastAvailablePrice;
+                    for (let date = new Date(formattedStartDate); date <= new Date(formattedEndDate); date.setDate(date.getDate() + 1)) {
+                        const dateString = date.toISOString().split('T')[0];
+                        if (data[dateString] !== undefined) {
+                            lastAvailablePrice = data[dateString];
+                        }
+                        filledData[dateString] = lastAvailablePrice === undefined ? null : lastAvailablePrice;
+                    }
+                    return filledData;
+                })
+        );
+
+        Promise.all(dataFetchPromises).then(pricesByModel => {
+            const datasets = selectedModels.map((model, index) => {
+                const prices = pricesByModel[index];
+                const data = Object.keys(prices).map(date => prices[date]);
+                return {
+                    label: model.modelName,
+                    data: data,
+                    borderColor: getLineColor(model.benchmark),
+                    tension: 0.3
+                };
+            });
+
+            const labels = Object.keys(pricesByModel[0]);
 
             if (priceHistoryChart) {
                 priceHistoryChart.destroy(); // Clear previous chart
@@ -56,10 +74,9 @@ document.addEventListener('DOMContentLoaded', function() {
             priceHistoryChart = new Chart(ctx, {
                 type: 'line',
                 data: {
-                    labels: dates,
+                    labels: labels,
                     datasets: datasets
                 },
-
             });
         });
     }

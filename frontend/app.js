@@ -26,21 +26,32 @@ app.get('/', (req, res) => {
 
 // POST endpoint to get average price of a specific GPU on a specific date
 app.post('/average-price', (req, res) => {
-  const { modelName, date } = req.body; // e.g., gpu = "RTX3090", date = "2023-10-31"
+  const { modelName, startDate, endDate } = req.body; // e.g., modelName = "RTX3090", startDate = "2023-10-01", endDate = "2023-10-31"
 
-  const query = `SELECT AVG(price) as averagePrice FROM "${modelName}" WHERE date_sold = ?`;
-  db.get(query, [date], (err, row) => {
+  // The SQL BETWEEN operator is inclusive, so we subtract one day from endDate to make it exclusive
+  const query = `SELECT date_sold, AVG(price) as averagePrice 
+                 FROM "${modelName}" 
+                 WHERE date_sold BETWEEN ? AND date(?, '-1 day') 
+                 GROUP BY date_sold 
+                 ORDER BY date_sold`;
+
+  db.all(query, [startDate, endDate], (err, rows) => {
     if (err) {
-      console.log(err)
+      console.error(err);
       return res.status(500).json({ error: err.message });
     }
-    if (row && row.averagePrice !== null) {
-      return res.json({ averagePrice: row.averagePrice });
+    if (rows && rows.length > 0) {
+      const averagePrices = {};
+      rows.forEach(row => {
+        averagePrices[row.date_sold] = row.averagePrice;
+      });
+      return res.json(averagePrices);
     } else {
       return res.status(404).json({ message: 'No data found for given parameters' });
     }
   });
 });
+
 
 app.post('/specs', (req, res) => {
   const { modelName } = req.body; // e.g., modelName = "rtx-3090"
