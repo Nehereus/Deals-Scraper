@@ -7,6 +7,7 @@ from Ad import Ad
 from utils import print_info, print_scraper
 from scrapy.http import HtmlResponse
 
+
 class Ebay(scrapy.Spider):
     name = 'ebay'
 
@@ -21,7 +22,7 @@ class Ebay(scrapy.Spider):
         print_scraper("EBAY", "Starting...")
         # Only get the number of pages if FETCH_ALL is set to 'true'
         url = self.build_search_url(self.keyword, self.config, 1)
-        if os.getenv('FETCH_ALL',False):
+        if os.getenv('FETCH_ALL', "False") == "True":
             yield scrapy.Request(url, callback=self.parse_initial)
         else:
             # Otherwise, just scrape the first page
@@ -44,7 +45,7 @@ class Ebay(scrapy.Spider):
 
     def parse_initial(self, response):
         """ Parse the initial response to get the total number of pages if FETCH_ALL is set. """
-        if os.getenv('FETCH_ALL')   :
+        if os.getenv('FETCH_ALL',"False")=="True":
             total_ads = response.xpath(
                 '//*[@id="mainContent"]/div[1]/div/div[2]/div/div[1]/h1/span[1]/text()'
             ).extract_first()
@@ -70,12 +71,12 @@ class Ebay(scrapy.Spider):
             return
 
         print_scraper("EBAY", "Ads found")
-        for ad in  response.xpath('//li[@class="s-item s-item__pl-on-bottom"]'):
+        for ad in response.xpath('//li[@class="s-item s-item__pl-on-bottom"]'):
             title = ad.xpath('.//div[@class="s-item__title"]/span/text()').extract_first()
             price = ad.xpath('.//span[@class="s-item__price"]/span/text()').extract_first()
             date_sold = ad.xpath('.//span/text()').extract_first()
             condition = ad.xpath('.//span[@class="SECONDARY_INFO"]/text()').extract_first()
-            item_url =  ad.xpath('.//a[@class="s-item__link"]/@href').extract_first()
+            item_url = ad.xpath('.//a[@class="s-item__link"]/@href').extract_first()
 
             if (not title
                     or not price

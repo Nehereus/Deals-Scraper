@@ -62,7 +62,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     label: model.modelName,
                     data: data,
                     borderColor: getLineColor(model.benchmark),
-                    tension: 0.3
+                    tension: 0.4
                 };
             });
 

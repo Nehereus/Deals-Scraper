@@ -1,6 +1,6 @@
 const express = require('express');
 const sqlite3 = require('sqlite3').verbose();
-const updateGpuSpecs = require('./updateGPUSpecs');
+const { parseAndInsert } = require('./updateGPUSpecs');
 const app = express();
 const port = 3000;
 const path = require('path');
@@ -95,5 +95,5 @@ app.get('/modelsList', (req, res) => {
 // Start the server
 app.listen(port, () => {
   console.log(`Server running at http://localhost:${port}/`);
-  updateGpuSpecs()
+  parseAndInsert();
 });
