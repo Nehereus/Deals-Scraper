@@ -3,16 +3,22 @@ import json
 import os
 from multiprocessing import Process
 from scrapy.crawler import CrawlerProcess
-
+import set_min_max_price
 from utils import print_info
 from websites.ebay.ebay import Ebay
 
 
-def main(config):
+def main():
+    shared_path= os.environ.get('SHARED_PATH')
     print_info("Activating Scraper...")
     interval = 24
 
     while True:
+        # set the min/max price of the config.json before another round
+        set_min_max_price.main()
+        with open(f'{shared_path}/config.json', 'r') as f:
+            config = json.load(f)
+
         for keyword, keyword_config in config.items():
             print_info(f"Scraping for keyword: {keyword}")
             p = Process(target=create_process, args=(Ebay,keyword, keyword_config))
@@ -39,7 +45,5 @@ def create_process(classToCall, keyword, keyword_config):
 
 if __name__ == "__main__":
     print_info("Starting scraper")
-    shared_path= os.environ.get('SHARED_PATH')
-    with open(f'{shared_path}/config.json', 'r') as f:
-        config = json.load(f)
+
     main(config)

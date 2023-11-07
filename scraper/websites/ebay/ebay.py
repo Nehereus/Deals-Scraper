@@ -45,7 +45,7 @@ class Ebay(scrapy.Spider):
 
     def parse_initial(self, response):
         """ Parse the initial response to get the total number of pages if FETCH_ALL is set. """
-        if os.getenv('FETCH_ALL',"False")=="True":
+        if os.getenv('FETCH_ALL', "False") == "True":
             total_ads = response.xpath(
                 '//*[@id="mainContent"]/div[1]/div/div[2]/div/div[1]/h1/span[1]/text()'
             ).extract_first()
@@ -61,7 +61,7 @@ class Ebay(scrapy.Spider):
 
     def parse_page(self, response):
         """ Parse each page to extract ads. """
-        exclusion_keywords = ["laptop"]
+        exclusion_keywords = ["laptop", "eGPU"]
 
         print_scraper("EBAY", "Scraping page...")
         all_ads = []

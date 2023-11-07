@@ -40,6 +40,11 @@ class SQLitePipeline:
         # Check if itemID exists in the database
         self.c.execute(f'SELECT itemID FROM "{self.table_name}" WHERE itemID = ?', (item['itemID'],))
         result = self.c.fetchone()
+
+        # drop items with "Parts Only" condition
+        if item['condition'] == "Parts Only":
+            raise DropItem(f"Item condition is 'Parts Only': {item['itemID']}")
+
         if result:
             # If itemID exists, raise a DropItem exception
             raise DropItem(f"Duplicate item found: {item['itemID']}")

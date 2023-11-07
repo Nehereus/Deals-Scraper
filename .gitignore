@@ -132,5 +132,5 @@ dmypy.json
 # hitlist
 hits.json
 *.ini
-!/shared/items_database.db
-!/shared/config.json
+/shared/items_database.db
+/shared/config.json
