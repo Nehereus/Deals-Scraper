@@ -26,15 +26,24 @@ app.get('/', (req, res) => {
 
 // POST endpoint to get average price of a specific GPU on a specific date
 app.post('/average-price', (req, res) => {
-  const { modelName, startDate, endDate } = req.body; // e.g., modelName = "RTX3090", startDate = "2023-10-01", endDate = "2023-10-31"
+  const { modelName, startDate, endDate, condition } = req.body;
 
-  // The SQL BETWEEN operator is inclusive, so we subtract one day from endDate to make it exclusive
-  const query = `SELECT date_sold, AVG(price) as averagePrice 
-                 FROM "${modelName}" 
-                 WHERE date_sold BETWEEN ? AND date(?, '-1 day') 
-                 GROUP BY date_sold 
-                 ORDER BY date_sold`;
+  // Start with the base query
+  let query = `SELECT date_sold, AVG(price) as averagePrice 
+               FROM "${modelName}" 
+               WHERE date_sold BETWEEN ? AND date(?, '-1 day')`;
+  // Append condition-specific SQL
+  if (condition === 'Brand New') {
+    query += ` AND condition = 'Brand New'`;
+  } else if (condition === 'Used') {
+    query += ` AND condition != 'Brand New'`;
+  } else {
+    // Handle invalid condition parameter
+    return res.status(400).json({ error: 'Invalid condition parameter' });
+  }
 
+  query += ` GROUP BY date_sold ORDER BY date_sold`;
+  console.log(query)
   db.all(query, [startDate, endDate], (err, rows) => {
     if (err) {
       console.error(err);
@@ -51,6 +60,7 @@ app.post('/average-price', (req, res) => {
     }
   });
 });
+
 
 
 app.post('/specs', (req, res) => {
@@ -79,7 +89,6 @@ app.get('/modelsList', (req, res) => {
     }
     if (rows.length > 0) {
       const formattedRows = rows.map(row => ({
-
         modelName: row.modelName,
         benchmark: row.benchmark
       }));
@@ -95,5 +104,5 @@ app.get('/modelsList', (req, res) => {
 // Start the server
 app.listen(port, () => {
   console.log(`Server running at http://localhost:${port}/`);
-  parseAndInsert();
+  //parseAndInsert();
 });

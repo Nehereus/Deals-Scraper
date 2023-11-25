@@ -1,23 +1,19 @@
-let modelsList;
-
-document.addEventListener('DOMContentLoaded', function() {
+async function getModelList() {
+    const response = await fetch('./modelsList');
+    return response.json();
+}
+document.addEventListener('DOMContentLoaded', async function () {
     const ctx = document.getElementById('priceHistoryChart').getContext('2d');
     let priceHistoryChart;
+    const modelsList = await getModelList();
+    fetchAndPlotData(modelsList.slice(0, 5), 7);
 
-    // Fetch the models list
-    fetch('./modelsList')
-        .then(response => response.json())
-        .then(models => {
-            modelsList = models; // Store in a local variable
-            fetchAndPlotData(models.slice(0, 5), 7); // Default top 5 and last 7 days
-        });
-
-    document.getElementById("numModels").addEventListener("change", function(event) {
+    document.getElementById("numModels").addEventListener("change", function (event) {
         let selectedValue = parseInt(event.target.value, 10);
         fetchAndPlotData(modelsList.slice(0, selectedValue), 7); // Use local variable, default to last 7 days
     });
 
-    document.getElementById("dateRange").addEventListener("change", function(event) {
+    document.getElementById("dateRange").addEventListener("change", function (event) {
         let selectedValue = parseInt(event.target.value, 10);
         let numModels = parseInt(document.getElementById("numModels").value, 10);
         fetchAndPlotData(modelsList.slice(0, numModels), selectedValue);
@@ -35,8 +31,13 @@ document.addEventListener('DOMContentLoaded', function() {
         const dataFetchPromises = selectedModels.map(model =>
             fetch(`./average-price`, {
                 method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ modelName: model.modelName, startDate: formattedStartDate, endDate: formattedEndDate })
+                headers: {'Content-Type': 'application/json'},
+                body: JSON.stringify({
+                    modelName: model.modelName,
+                    startDate: formattedStartDate,
+                    endDate: formattedEndDate,
+                    condition:"Used"
+                })
             })
                 .then(response => response.json())
                 .then(data => {
